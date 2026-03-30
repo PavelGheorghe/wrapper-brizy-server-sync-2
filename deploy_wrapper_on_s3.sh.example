@@ -1,0 +1,31 @@
+#!/bin/bash
+
+if [ -z "${1:-}" ]; then
+  echo "Usage: $0 <s3-path-segment>"
+  exit 1
+fi
+
+cd "$(dirname "$0")"
+
+aws configure set aws_access_key_id 'xxxxx'
+aws configure set aws_secret_access_key 'xxxx'
+
+echo 'Creating sync_wrapper.zip ZIP!'
+zip -r sync_wrapper.zip \
+  index.php \
+  daily_sync_version_check.php \
+  config.json \
+  download_new_version.php \
+  .htaccess \
+  update.lock \
+  update \
+  requirements-checker \
+  -x \*.DS_Store\* -x \*.git\* -x \*.idea\*
+
+echo "Load ZIP sync_wrapper.zip to s3://server-sync-v2/wrapper-app/$1/sync_wrapper.zip"
+aws s3 cp "sync_wrapper.zip" "s3://server-sync-v2/wrapper-app/$1/sync_wrapper.zip"
+
+echo 'Remove sync_wrapper.zip ZIP!'
+rm -f sync_wrapper.zip
+
+echo "Process finished successfully!"
