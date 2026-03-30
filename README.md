@@ -103,3 +103,7 @@ Use this for assets that must be addressed with a `/var/...` URL at the site roo
 `deploy_wrapper_on_s3.sh` builds **`sync_wrapper.zip`** with the wrapper files (`index.php`, `daily_sync_version_check.php`, `requirements-checker`, `update`, etc.) for upload to your object storage path.
 
 If you maintain deploy scripts locally, **do not commit real AWS credentials**; use environment variables or CI secrets and inject them at build time.
+
+
+
+bash deploy_wrapper_on_s3.sh 1.0 (first version)
