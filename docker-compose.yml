@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+    project_sync_app:
+        build:
+            context: .
+            dockerfile: ./docker/development/Dockerfile
+#            dockerfile: ./docker/nginxSetup/Dockerfile
+        volumes:
+            - .:/var/www/html
+        ports:
+            - 80:80
+        networks:
+            - cloud_default
+networks:
+    cloud_default:
+        external: true
+        name: cloud_default

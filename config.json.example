@@ -1,0 +1,8 @@
+{
+    "active_version": "1.13",
+    "app_id": "your-project-app-id-from-cloud",
+    "deploy_url": "https://your-cloud-host",
+    "last_checked_at": null,
+    "last_sync_version_check": null,
+    "last_error": null
+}
