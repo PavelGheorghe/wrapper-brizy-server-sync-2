@@ -11,10 +11,10 @@ define('MAX_FILE_SIZE', 6000000);
  */
 $requestPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
 
-//if (preg_match('#/cloud/update-version/?$#', $requestPath) === 1) {
-//    require __DIR__ . '/download_new_version.php';
-//    exit;
-//}
+if (preg_match('#/cloud/update-version/?$#', $requestPath) === 1) {
+    require __DIR__ . '/download_new_version.php';
+    exit;
+}
 
 $rootConfigPath = __DIR__ . '/config.json';
 if (!is_file($rootConfigPath)) {

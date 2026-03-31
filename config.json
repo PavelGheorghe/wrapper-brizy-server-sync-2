@@ -2,7 +2,7 @@
     "active_version": "1.13",
     "app_id": "65b476a05d0bc56d2d89ebf13b2b39cf8036aeb7c05dae87b26500dfb676f22e",
     "deploy_url": "http://www.brizy-cloud.local",
-    "last_checked_at": "2026-03-30T05:35:55+00:00",
-    "last_error": null,
-    "last_sync_version_check": "2026-03-30T05:35:55+00:00"
+    "last_checked_at": "2026-03-31T06:56:56+00:00",
+    "last_error": "Update temporary directory must be writable.",
+    "last_sync_version_check": "2026-03-31T06:56:56+00:00"
 }
