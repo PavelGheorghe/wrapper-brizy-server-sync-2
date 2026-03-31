@@ -37,23 +37,6 @@ class RootProjectRequirements extends RequirementCollection
             )
         );
 
-        $this->addRequirement(
-            class_exists('ZipArchive'),
-            'ZipArchive extension must be available',
-            'Install and enable the <strong>PHP zip extension</strong> (ext-zip).'
-        );
-
-        $this->addRequirement(
-            $this->isCommandAvailable('zip'),
-            '"zip" command must be available',
-            'Install the <strong>zip</strong> package so the binary is available in PATH.'
-        );
-
-        $this->addRequirement(
-            $this->isCommandAvailable('unzip'),
-            '"unzip" command must be available',
-            'Install the <strong>unzip</strong> package so the binary is available in PATH.'
-        );
     }
 
     private function isUpdateLockPathWritable(string $lockPath): bool
@@ -67,28 +50,4 @@ class RootProjectRequirements extends RequirementCollection
         return is_dir($parent) && is_writable($parent);
     }
 
-    private function isCommandAvailable(string $command): bool
-    {
-        $shellExecAvailable = function_exists('shell_exec') && stripos((string)ini_get('disable_functions'), 'shell_exec') === false;
-        if ($shellExecAvailable) {
-            $output = shell_exec('command -v ' . escapeshellarg($command) . ' 2>/dev/null');
-            if (is_string($output) && trim($output) !== '') {
-                return true;
-            }
-        }
-
-        $fallbackPaths = [
-            '/usr/bin/' . $command,
-            '/bin/' . $command,
-            '/usr/local/bin/' . $command,
-        ];
-
-        foreach ($fallbackPaths as $path) {
-            if (is_file($path) && is_executable($path)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
 }

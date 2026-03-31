@@ -71,7 +71,7 @@ Updates may rewrite `config.json` via `ConfigStore` (atomic write). The file mus
 
 **On success** the marker is written with `checker_version`, `active_version`, and `checked_at` (ISO).
 
-**Checks** (see `requirements-checker/RootProjectRequirements.php`): wrapper root writable; `{activeVersion}/` writable (Symfony cache, logs, etc.); `update.lock` writable or creatable in a writable directory; PHP `ZipArchive`; `zip` and `unzip` CLI available on the server.
+**Checks** (see `requirements-checker/RootProjectRequirements.php`): wrapper root writable; `{activeVersion}/` writable (Symfony cache, logs, etc.); `update.lock` writable or creatable in a writable directory.
 
 If requirements fail, fix permissions and extensions as indicated, or delete `var/requirements-ok.json` to force a re-check after changes.
 
