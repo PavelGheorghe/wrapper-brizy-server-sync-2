@@ -6,7 +6,7 @@ declare(strict_types=1);
  * Automatic Cloud sync version check: at most once per 86400 seconds (see last_sync_version_check in config.json).
  * Call only after root requirements have passed.
  */
-function brz_run_daily_sync_version_check(string $rootConfigPath, array &$rootConfig, string &$activeVersion, string &$activeIndexPath): void
+function brz_run_daily_sync_version_check(string $rootConfigPath, array &$rootConfig, string &$activeVersion, string &$activeIndexPath)
 {
     $lastSyncCheckRaw = trim((string)($rootConfig['last_sync_version_check'] ?? ''));
     $lastSyncCheckTs = $lastSyncCheckRaw === '' ? false : strtotime($lastSyncCheckRaw);

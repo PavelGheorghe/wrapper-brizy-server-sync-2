@@ -7,9 +7,9 @@ namespace RequirementsChecker;
 class RequirementCollection
 {
     /** @var Requirement[] */
-    private array $requirements = [];
+    private $requirements = [];
 
-    public function add(Requirement $requirement): void
+    public function add(Requirement $requirement)
     {
         $this->requirements[] = $requirement;
     }
@@ -18,8 +18,8 @@ class RequirementCollection
         bool $fulfilled,
         string $testMessage,
         string $helpHtml,
-        ?string $helpText = null
-    ): void {
+        $helpText = null
+    ) {
         $this->add(new Requirement($fulfilled, $testMessage, $helpHtml, $helpText, false));
     }
 
@@ -27,8 +27,8 @@ class RequirementCollection
         bool $fulfilled,
         string $testMessage,
         string $helpHtml,
-        ?string $helpText = null
-    ): void {
+        $helpText = null
+    ) {
         $this->add(new Requirement($fulfilled, $testMessage, $helpHtml, $helpText, true));
     }
 

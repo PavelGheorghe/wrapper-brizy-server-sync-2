@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 class CloudClient
 {
-    private int $timeoutSeconds;
+    /** @var int */
+    private $timeoutSeconds;
 
     public function __construct(int $timeoutSeconds = 60)
     {
@@ -35,7 +36,7 @@ class CloudClient
         return $syncVersion;
     }
 
-    public function downloadVersionPackage(string $deployUrl, string $version, string $appId, string $targetPath): void
+    public function downloadVersionPackage(string $deployUrl, string $version, string $appId, string $targetPath)
     {
         $packageUrl = rtrim($deployUrl, '/') . '/projects/sync/package';
         $packageResponse = $this->httpGet($packageUrl, [
@@ -57,7 +58,7 @@ class CloudClient
     /**
      * @return array{status:int,headers:array<int,string>,body:string}
      */
-    private function httpGet(string $url, array $headers, ?int $timeoutOverrideSeconds = null): array
+    private function httpGet(string $url, array $headers, $timeoutOverrideSeconds = null): array
     {
         $timeout = $timeoutOverrideSeconds ?? $this->timeoutSeconds;
         $context = stream_context_create([

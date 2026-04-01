@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 class JsonResponder
 {
-    public function send(int $statusCode, array $payload): void
+    public function send(int $statusCode, array $payload)
     {
         http_response_code($statusCode);
         header('Content-Type: application/json');

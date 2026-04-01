@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 class VersionDeployer
 {
-    private RuntimeValidator $runtimeValidator;
+    /** @var RuntimeValidator */
+    private $runtimeValidator;
 
-    private string $tmpZipPath = '';
-    private string $extractDir = '';
-    private string $tmpVersionDir = '';
+    /** @var string */
+    private $tmpZipPath = '';
+    /** @var string */
+    private $extractDir = '';
+    /** @var string */
+    private $tmpVersionDir = '';
 
     public function __construct(RuntimeValidator $runtimeValidator)
     {
@@ -22,7 +26,7 @@ class VersionDeployer
         string $appId,
         string $remoteVersion,
         CloudClient $cloudClient
-    ): void {
+    ) {
         if (!is_dir($tmpRoot) && !@mkdir($tmpRoot, 0777, true) && !is_dir($tmpRoot)) {
             throw new UpdateException('Unable to create update temporary directory.');
         }
@@ -78,7 +82,7 @@ class VersionDeployer
         $this->runtimeValidator->validateStandaloneRuntime($targetVersionDir);
     }
 
-    public function cleanup(): void
+    public function cleanup()
     {
         if ($this->tmpVersionDir !== '' && is_dir($this->tmpVersionDir)) {
             $this->rrmdir($this->tmpVersionDir);
@@ -111,7 +115,7 @@ class VersionDeployer
         return $extractDir;
     }
 
-    private function copyDir(string $source, string $destination): void
+    private function copyDir(string $source, string $destination)
     {
         if (!is_dir($destination) && !@mkdir($destination, 0777, true) && !is_dir($destination)) {
             throw new UpdateException('Unable to create target directory: ' . $destination);
@@ -138,7 +142,7 @@ class VersionDeployer
         }
     }
 
-    private function rrmdir(string $path): void
+    private function rrmdir(string $path)
     {
         if (!is_dir($path)) {
             return;

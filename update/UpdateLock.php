@@ -7,7 +7,7 @@ class UpdateLock
     /** @var resource|null */
     private $handle = null;
 
-    public function acquire(string $lockPath): void
+    public function acquire(string $lockPath)
     {
         $handle = @fopen($lockPath, 'c+');
         if ($handle === false) {
@@ -22,7 +22,7 @@ class UpdateLock
         $this->handle = $handle;
     }
 
-    public function release(): void
+    public function release()
     {
         if (is_resource($this->handle)) {
             @flock($this->handle, LOCK_UN);

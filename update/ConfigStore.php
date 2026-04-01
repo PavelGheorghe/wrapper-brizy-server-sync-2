@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 class ConfigStore
 {
-    private string $configPath;
+    /** @var string */
+    private $configPath;
 
     public function __construct(string $configPath)
     {
@@ -24,7 +25,7 @@ class ConfigStore
         return is_array($decoded) ? $decoded : [];
     }
 
-    public function writeAtomic(array $payload): void
+    public function writeAtomic(array $payload)
     {
         $tmpPath = $this->configPath . '.tmp';
         $json = json_encode($payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);

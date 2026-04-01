@@ -6,17 +6,22 @@ namespace RequirementsChecker;
 
 class Requirement
 {
-    private bool $fulfilled;
-    private string $testMessage;
-    private string $helpText;
-    private string $helpHtml;
-    private bool $optional;
+    /** @var bool */
+    private $fulfilled;
+    /** @var string */
+    private $testMessage;
+    /** @var string */
+    private $helpText;
+    /** @var string */
+    private $helpHtml;
+    /** @var bool */
+    private $optional;
 
     public function __construct(
         bool $fulfilled,
         string $testMessage,
         string $helpHtml,
-        ?string $helpText = null,
+        $helpText = null,
         bool $optional = false
     ) {
         $this->fulfilled = $fulfilled;

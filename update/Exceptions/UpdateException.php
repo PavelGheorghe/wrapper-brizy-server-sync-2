@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 class UpdateException extends RuntimeException
 {
-    private int $httpStatusCode;
-    private string $responseStatus;
+    /** @var int */
+    private $httpStatusCode;
+    /** @var string */
+    private $responseStatus;
 
     public function __construct(
         string $message,

@@ -14,7 +14,7 @@ class RuntimeValidator
         return preg_match('/^\d+(?:\.\d+)*$/', $version) === 1;
     }
 
-    public function validateStandaloneRuntime(string $versionDir): void
+    public function validateStandaloneRuntime(string $versionDir)
     {
         $requiredPaths = [
             '/index.php',
@@ -33,7 +33,7 @@ class RuntimeValidator
         }
     }
 
-    public function validateUpdatePrerequisites(string $projectRoot, string $tmpRoot): void
+    public function validateUpdatePrerequisites(string $projectRoot, string $tmpRoot)
     {
         if (!is_writable($projectRoot)) {
             throw new UpdateException('Project root directory must be writable for updates.');

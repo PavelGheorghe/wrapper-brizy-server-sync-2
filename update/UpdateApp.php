@@ -4,15 +4,24 @@ declare(strict_types=1);
 
 class UpdateApp
 {
-    private ConfigStore $configStore;
-    private RuntimeValidator $runtimeValidator;
-    private CloudClient $cloudClient;
-    private VersionDeployer $versionDeployer;
-    private UpdateLock $updateLock;
-    private JsonResponder $jsonResponder;
-    private string $projectRoot;
-    private string $tmpRoot;
-    private string $lockPath;
+    /** @var ConfigStore */
+    private $configStore;
+    /** @var RuntimeValidator */
+    private $runtimeValidator;
+    /** @var CloudClient */
+    private $cloudClient;
+    /** @var VersionDeployer */
+    private $versionDeployer;
+    /** @var UpdateLock */
+    private $updateLock;
+    /** @var JsonResponder */
+    private $jsonResponder;
+    /** @var string */
+    private $projectRoot;
+    /** @var string */
+    private $tmpRoot;
+    /** @var string */
+    private $lockPath;
 
     public function __construct(
         ConfigStore $configStore,
@@ -36,7 +45,7 @@ class UpdateApp
         $this->lockPath = $lockPath;
     }
 
-    public function run(string $requestToken): void
+    public function run(string $requestToken)
     {
         $result = $this->runInternal($requestToken, false);
         $this->jsonResponder->send($result['http_status'], $result['body']);
